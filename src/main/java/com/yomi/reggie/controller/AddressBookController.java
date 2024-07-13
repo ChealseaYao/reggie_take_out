@@ -85,7 +85,7 @@ public class AddressBookController {
     }
 
     /**
-     * 查询指定用户的全部地址
+     * 查询指定用户的全部地址.
      */
     @GetMapping("/list")
     public R<List<AddressBook>> list(AddressBook addressBook) {
