@@ -14,6 +14,8 @@ import com.yomi.reggie.service.DishService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -196,9 +198,9 @@ public class DishController {
     }*/
     @GetMapping("/list")
     public R<List<DishDto>> list(Dish dish) {
-        List<DishDto> dishDtoList = null;
+       List<DishDto> dishDtoList = null;
         //动态构造key
-        String key = "dish" + dish.getCategoryId() + "_" + dish.getStatus();
+       String key = "dish" + dish.getCategoryId() + "_" + dish.getStatus();
 
         dishDtoList = (List<DishDto>) redisTemplate.opsForValue().get(key);
 
